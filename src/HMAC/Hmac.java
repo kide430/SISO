@@ -53,15 +53,26 @@ public class Hmac {
              * --------------------------
              * SecretKeySpec wandelt das Byte-Array (`secretKeyBytes`) in ein Schlüsselobjekt um, das
              * für kryptografische Klassen wie `Mac` geeignet ist.
+             * Warum der Algorithmus als Parameter?
+Der Algorithmus-Parameter sorgt dafür, dass der Schlüssel eindeutig einem bestimmten kryptografischen Verfahren (hier HMAC mit SHA1) zugeordnet wird.
+*  Das hilft dabei, den Schlüssel korrekt und sicher in den späteren Schritten der HMAC-Berechnung zu verwenden.
              */
             SecretKeySpec secretKeySpec = new SecretKeySpec(secretKeyBytes, ALGORITHM);
 
             /*
              * 5. Mac-Instanz erstellen und initialisieren
-             * -------------------------------------------
-             * - Mac: Führt die HMAC-Berechnung durch.
-             * - Die Instanz wird mit `getInstance(ALGORITHM)` für den Algorithmus "HmacSHA1" erstellt.
-             * - Mit `mac.init(secretKeySpec)` wird der Algorithmus mit dem geheimen Schlüssel verknüpft.
+
+
+            Mit Mac.getInstance(ALGORITHM) wird ein Objekt erstellt, das den HMAC-Algorithmus (hier "HmacSHA1") implementiert.
+            Dieses Objekt enthält den Code und die interne Logik, um den HMAC zu berechnen. Allerdings kennt es noch nicht
+            * den geheimen Schlüssel oder die zu verarbeitenden Daten.
+            Initialisierung mit dem geheimen Schlüssel:
+
+            Mit mac.init(secretKeySpec) wird die Mac-Instanz mit dem zuvor erstellten SecretKeySpec initialisiert.
+            Was bedeutet das?
+            Der geheime Schlüssel (in Form eines Byte-Arrays) wird in die interne Struktur des Mac-Objekts übernommen.
+            * Das bedeutet, dass ab diesem Moment jede Operation, die mit diesem Mac-Objekt ausgeführt wird,
+            * den geheimen Schlüssel einbezieht.
              */
             Mac mac = Mac.getInstance(ALGORITHM);
             mac.init(secretKeySpec);

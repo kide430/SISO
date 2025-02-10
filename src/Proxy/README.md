@@ -26,14 +26,14 @@ In diesem Beispiel dient der **Validator-Proxy** als Filter, der Eingaben überp
 
 ## **3. Wie funktioniert das Proxy-Muster in diesem Beispiel?**
 
-1. **Interface `ArticleService`**:
+1. **Interface `Proxy.ArticleService`**:
    - Definiert die Methode `createArticle`, die von mehreren Klassen implementiert wird.
 
-2. **Tatsächliche Implementierung (`ArticleServiceImpl`)**:
+2. **Tatsächliche Implementierung (`Proxy.ArticleServiceImpl`)**:
    - Führt die Logik für das Erstellen eines Artikels aus (z. B. Speichern von Daten).
 
-3. **Proxy (`ArticleServiceValidator`)**:
-   - Implementiert ebenfalls `ArticleService`, überprüft jedoch die Eingaben (Name und Beschreibung) mit regulären Ausdrücken.
+3. **Proxy (`Proxy.ArticleServiceValidator`)**:
+   - Implementiert ebenfalls `Proxy.ArticleService`, überprüft jedoch die Eingaben (Name und Beschreibung) mit regulären Ausdrücken.
    - Leitet nur gültige Eingaben an die tatsächliche Implementierung weiter.
 
 ---
@@ -57,22 +57,27 @@ In diesem Beispiel dient der **Validator-Proxy** als Filter, der Eingaben überp
 ## **5. Polymorphismus: Warum Interfaces verwenden?**
 
 - **Flexibilität**:
-  - Durch die Verwendung eines Interfaces (`ArticleService`) kann der Proxy auf jede Implementierung zugreifen, die dieses Interface implementiert.
+  - Durch die Verwendung eines Interfaces (`Proxy.ArticleService`) kann der Proxy auf jede Implementierung zugreifen, die dieses Interface implementiert.
 - **Austauschbarkeit**:
-  - Der Proxy (`ArticleServiceValidator`) und die tatsächliche Implementierung (`ArticleServiceImpl`) können problemlos ausgetauscht werden.
+  - Der Proxy (`Proxy.ArticleServiceValidator`) und die tatsächliche Implementierung (`Proxy.ArticleServiceImpl`) können problemlos ausgetauscht werden.
 - **Erweiterbarkeit**:
   - Neue Klassen können das Interface implementieren, ohne den Proxy ändern zu müssen.
+  •	Proxy.ArticleService ist ein Interface. Sowohl Proxy.ArticleServiceValidator (Proxy) als auch Proxy.ArticleServiceImpl (Implementierung) implementieren dieses Interface.
+•	Dadurch kann ein Objekt vom Typ Proxy.ArticleService sowohl auf den Proxy als auch auf die Implementierung verweisen.
+•	In Java können Variablen oder Referenzen vom Typ eines Interfaces sein. Diese 
+•	Flexibilität durch Polymorphismus
+
 
 ---
 
 ## **6. Beispielaufruf**
 
 ```java
-// Konkrete Implementierung des ArticleService
-ArticleService realService = new ArticleServiceImpl();
+// Konkrete Implementierung des Proxy.ArticleService
+Proxy.ArticleService realService = new Proxy.ArticleServiceImpl();
 
 // Proxy (Validator) wird mit der tatsächlichen Implementierung initialisiert
-ArticleService proxyService = new ArticleServiceValidator(realService);
+Proxy.ArticleService proxyService = new Proxy.ArticleServiceValidator(realService); hier wird quasi das realservice object genommen
 
 // Erfolgreicher Aufruf
 proxyService.createArticle("Valid Name", "This is a valid description.");
