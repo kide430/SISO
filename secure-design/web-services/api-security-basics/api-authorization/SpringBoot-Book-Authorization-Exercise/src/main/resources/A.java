@@ -1,0 +1,1 @@
+keytool -genkeypair -alias server -keyalg RSA -keystore /Users/deniskilinc/IdeaProjects/teiniker-lectures-securedesign/secure-design/web-services/api-security-basics/api-authorization/SpringBoot-Book-Authorization-Exercise/src/main/resources/keystore.p12 -storetype PKCS12 -validity 3650 -keysize 2048

@@ -103,7 +103,7 @@ public class Asymetrisch {
             } catch (InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
                 throw new IllegalStateException("Unable to decrypt data! Fehler beim Entschlüsseln der Daten.", e);
             }
-        }
+        }}}
 
 /**
  * Speichert ein Byte-Array in einer Datei.
