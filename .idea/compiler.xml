@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="SpringBoot-BeanValidation-Book-Exercise" />
+        <module name="SpringBoot-BeanValidation-Book" />
+        <module name="SpringBoot-Book-Authorization" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="SpringBoot-MVC-Login" target="21" />
+      <module name="web-service-parent" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="SpringBoot-BeanValidation-Book" options="-parameters" />
+      <module name="SpringBoot-BeanValidation-Book-Exercise" options="-parameters" />
+      <module name="SpringBoot-Book-Authorization" options="-parameters" />
+      <module name="SpringBoot-MVC-Login" options="-parameters" />
+    </option>
+  </component>
+</project>
